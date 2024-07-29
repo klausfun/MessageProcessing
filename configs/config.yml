@@ -1,0 +1,14 @@
+port: "8000"
+
+db:
+  host: "db"
+  port: "5432"
+  username: "postgres"
+  dbname: "postgres"
+  sslmode: "disable"
+
+kafka:
+  brokers:
+    - "kafka:9092"
+  topic: "message"
+
