@@ -5,11 +5,13 @@ import (
 	"MessageProcessing/pkg/repository"
 )
 
+//go:generate mockgen -source=service.go -destination=mocks/mock.go
+
 type Message interface {
 	Create(message models.Message) (int, error)
 	GetCurMessages() ([]models.Message, error)
 	GetCompMessages() ([]models.Message, error)
-	sendToKafka(message models.Message)
+	SendToKafka(message models.Message)
 	ScanAndResend()
 }
 

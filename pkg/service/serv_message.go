@@ -24,7 +24,7 @@ func (s *MessageService) Create(message models.Message) (int, error) {
 		return 0, err
 	}
 
-	go s.sendToKafka(message)
+	go s.SendToKafka(message)
 
 	return id, nil
 }
@@ -37,7 +37,7 @@ func (s *MessageService) GetCompMessages() ([]models.Message, error) {
 	return s.repo.GetCompMessages()
 }
 
-func (s *MessageService) sendToKafka(message models.Message) {
+func (s *MessageService) SendToKafka(message models.Message) {
 	producer := kafka.GetProducer()
 	messageData, err := json.Marshal(message)
 	if err != nil {
@@ -69,7 +69,7 @@ func (s *MessageService) ScanAndResend() {
 		wg.Add(1)
 		go func(msg models.Message) {
 			defer wg.Done()
-			s.sendToKafka(msg)
+			s.SendToKafka(msg)
 		}(message)
 	}
 	wg.Wait()

@@ -9,7 +9,7 @@ import (
 func (h *Handler) createMessage(c *gin.Context) {
 	var input models.Message
 	if err := c.BindJSON(&input); err != nil {
-		newErrorResponse(c, http.StatusBadRequest, err.Error())
+		newErrorResponse(c, http.StatusBadRequest, "invalid input body")
 		return
 	}
 
