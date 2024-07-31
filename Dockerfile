@@ -12,6 +12,6 @@ RUN chmod +x wait-for-postgres.sh
 RUN chmod +x wait-for-it.sh
 
 RUN go mod download
-RUN go build -o talkBoard ./cmd/main.go
+RUN go build -o messageprocessing ./cmd/main.go
 
-CMD ["./talkBoard"]
+CMD ["./messageprocessing"]
